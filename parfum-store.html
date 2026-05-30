@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Luxya Parfum | Les Saisons Olfactives</title>
+    <!-- استخدام مكتبة Tailwind CSS للتصميم الاحترافي -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            light: '#FDFBF7', // خلفية كريمية فاخرة
+                            dark: '#1A1A1A',  // لون داكن أنيق
+                            gray: '#7A7A7A',  // رمادي للنصوص الفرعية
+                            gold: '#C5A880',  // لمسة ذهبية للمؤشرات
+                            accent: '#F5EFE6', // لون كريمي للفواصل والأزرار
+                            summer: '#FFFDF0', // خلفية عطور الصيف
+                            autumn: '#FAF3EC', // خلفية عطور الخريف
+                            winter: '#F5F7FA', // خلفية عطور الشتاء
+                            spring: '#FAF5F6'  // خلفية عطور الربيع
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'Georgia', 'serif'],
+                        sans: ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- استيراد الخطوط الفاخرة -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF7;
+            color: #1A1A1A;
+            -webkit-tap-highlight-color: transparent;
+        }
+        h1, h2, h3, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        /* تأثير النبض للقلب والمؤثرات البصرية */
+        .heart-pop {
+            transition: transform 0.2s ease-in-out;
+        }
+        .heart-pop:active {
+            transform: scale(1.3);
+        }
+        /* إخفاء شريط التمرير الافتراضي لتجربة تطبيق سلسة */
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FDFBF7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #C5A880;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col pb-20 overflow-x-hidden">
+
+    <!-- شريط الإعلان العلوي -->
+    <div class="bg-brand-dark text-white text-[10px] sm:text-xs tracking-widest py-2 px-4 text-center uppercase font-medium">
+        LIVRAISON 58 WILAYAS • PAIEMENT À LA LIVRAISON (COD)
+    </div>
+
+    <!-- ترويسة المتجر العليا -->
+    <header class="sticky top-0 z-40 bg-brand-light/95 backdrop-blur-md border-b border-brand-accent py-4 px-4 sm:px-8">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="w-10"></div> <!-- موازن مساحة -->
+            <a href="#" onclick="switchTab('home')" class="text-center flex flex-col items-center">
+                <span class="text-xl sm:text-2xl font-serif tracking-[0.25em] font-semibold uppercase">LUXYA PARFUM</span>
+            </a>
+            <!-- مؤشر سلة المشتريات السريع -->
+            <button onclick="switchTab('cart')" class="relative p-2 text-brand-dark hover:opacity-70 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                <span id="header-cart-badge" class="absolute top-1 right-1 bg-brand-dark text-white text-[8px] w-4 h-4 rounded-full flex items-center justify-center font-bold hidden">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- محتوى التطبيق الأساسي التفاعلي -->
+    <main class="flex-grow w-full pb-6">
+
+                <!-- ================= الجزء صفر: الرئيسية (HOME) ================= -->
+        <section id="tab-home" class="tab-content">
+            <!-- Hero Section -->
+            <div class="relative w-full h-[60vh] sm:h-[70vh] lg:h-[80vh] flex items-center justify-center">
+                <img src="video-hero.png" alt="Parfums" class="absolute inset-0 w-full h-full object-cover shadow-sm">
+                <div class="absolute inset-0 bg-black/40"></div>
+                <div class="relative z-10 text-center px-4">
+                    <h2 class="text-xs sm:text-sm tracking-[0.4em] uppercase text-brand-accent font-semibold mb-3">L'Art de la Parfumerie</h2>
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif text-white mb-6 leading-tight">L'Essence de l'Élégance</h1>
+                    <button onclick="selectAllProducts()" class="bg-brand-gold text-white px-8 py-3.5 text-xs sm:text-sm tracking-widest uppercase hover:bg-amber-600 transition-all duration-300 rounded-sm">
+                        Découvrir tous les produits
+                    </button>
+                </div>
+            </div>
+
+            <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-10">
+            <!-- مقدمة ترحيبية راقية -->
+            <div class="text-center my-6">
+                <h2 class="text-xs tracking-[0.3em] uppercase text-brand-gold font-semibold mb-2">Collection Exclusive</h2>
+                <h1 class="text-3xl sm:text-4xl font-serif text-brand-dark">Les Saisons Olfactives</h1>
+                <p class="text-xs sm:text-sm text-brand-gray mt-2 max-w-md mx-auto italic">Chaque saison raconte une histoire d'amour, de nature et d'exception.</p>
+            </div>
+
+            <!-- شبكة بطاقات الفصول الأربعة (Saisons) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+                <!-- بطاقة الصيف (Summer) -->
+                <div onclick="exploreSeason('summer')" id="season-card-summer" class="season-slider group relative overflow-hidden aspect-[4/3] rounded-lg border border-brand-accent cursor-pointer bg-brand-summer p-4 flex flex-col justify-between transition-all duration-300 hover:shadow-md ring-2 ring-transparent" data-images='["image1.jpg","image11.jpg"]'>
+                    <img src="image1.jpg" alt="Été" class="season-slide absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-all duration-700" data-index="0">
+                    <img src="image11.jpg" alt="Été" class="season-slide absolute inset-0 w-full h-full object-cover opacity-0 group-hover:scale-105 transition-all duration-700" data-index="1">
+                    <div class="absolute inset-0 bg-gradient-to-t from-white/90 via-white/40 to-white/10 z-[1]"></div>
+                    <div class="relative z-10 flex justify-between items-start w-full">
+                        <span class="text-[10px] tracking-widest uppercase font-semibold text-amber-600">01 / ÉTÉ</span>
+                        <div class="flex gap-1 items-center">
+                            <span class="season-dot w-2 h-2 rounded-full bg-amber-500 transition-all" data-dot="0"></span>
+                            <span class="season-dot w-2 h-2 rounded-full bg-amber-300/50 transition-all" data-dot="1"></span>
+                        </div>
+                    </div>
+                    <div class="relative z-10 w-full">
+                        <h3 class="font-serif text-lg sm:text-xl font-medium leading-tight">Parfums d'Été</h3>
+                        <p class="text-[10px] text-brand-gray mt-1 uppercase tracking-widest font-semibold">Frais & Hespéridés</p>
+                    </div>
+                </div>
+
+                <!-- بطاقة الخريف (Autumn) -->
+                <div onclick="exploreSeason('autumn')" id="season-card-autumn" class="season-slider group relative overflow-hidden aspect-[4/3] rounded-lg border border-brand-accent cursor-pointer bg-brand-autumn p-4 flex flex-col justify-between transition-all duration-300 hover:shadow-md ring-2 ring-transparent" data-images='["image2.jpg","image22.jpg"]'>
+                    <img src="image2.jpg" alt="Automne" class="season-slide absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-all duration-700" data-index="0">
+                    <img src="image22.jpg" alt="Automne" class="season-slide absolute inset-0 w-full h-full object-cover opacity-0 group-hover:scale-105 transition-all duration-700" data-index="1">
+                    <div class="absolute inset-0 bg-gradient-to-t from-white/90 via-white/40 to-white/10 z-[1]"></div>
+                    <div class="relative z-10 flex justify-between items-start w-full">
+                        <span class="text-[10px] tracking-widest uppercase font-semibold text-amber-800">02 / AUTOMNE</span>
+                        <div class="flex gap-1 items-center">
+                            <span class="season-dot w-2 h-2 rounded-full bg-amber-700 transition-all" data-dot="0"></span>
+                            <span class="season-dot w-2 h-2 rounded-full bg-amber-500/50 transition-all" data-dot="1"></span>
+                        </div>
+                    </div>
+                    <div class="relative z-10 w-full">
+                        <h3 class="font-serif text-lg sm:text-xl font-medium leading-tight">Parfums d'Automne</h3>
+                        <p class="text-[10px] text-brand-gray mt-1 uppercase tracking-widest font-semibold">Ambrés & Chaleureux</p>
+                    </div>
+                </div>
+
+                <!-- بطاقة الشتاء (Winter) -->
+                <div onclick="exploreSeason('winter')" id="season-card-winter" class="season-slider group relative overflow-hidden aspect-[4/3] rounded-lg border border-brand-accent cursor-pointer bg-brand-winter p-4 flex flex-col justify-between transition-all duration-300 hover:shadow-md ring-2 ring-transparent" data-images='["image3.jpg","image33.jpg"]'>
+                    <img src="image3.jpg" alt="Hiver" class="season-slide absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-all duration-700" data-index="0">
+                    <img src="image33.jpg" alt="Hiver" class="season-slide absolute inset-0 w-full h-full object-cover opacity-0 group-hover:scale-105 transition-all duration-700" data-index="1">
+                    <div class="absolute inset-0 bg-gradient-to-t from-white/90 via-white/40 to-white/10 z-[1]"></div>
+                    <div class="relative z-10 flex justify-between items-start w-full">
+                        <span class="text-[10px] tracking-widest uppercase font-semibold text-blue-800">03 / HIVER</span>
+                        <div class="flex gap-1 items-center">
+                            <span class="season-dot w-2 h-2 rounded-full bg-blue-500 transition-all" data-dot="0"></span>
+                            <span class="season-dot w-2 h-2 rounded-full bg-blue-300/50 transition-all" data-dot="1"></span>
+                        </div>
+                    </div>
+                    <div class="relative z-10 w-full">
+                        <h3 class="font-serif text-lg sm:text-xl font-medium leading-tight">Parfums d'Hiver</h3>
+                        <p class="text-[10px] text-brand-gray mt-1 uppercase tracking-widest font-semibold">Boisés & Profonds</p>
+                    </div>
+                </div>
+
+                <!-- بطاقة الربيع (Spring) -->
+                <div onclick="exploreSeason('spring')" id="season-card-spring" class="season-slider group relative overflow-hidden aspect-[4/3] rounded-lg border border-brand-accent cursor-pointer bg-brand-spring p-4 flex flex-col justify-between transition-all duration-300 hover:shadow-md ring-2 ring-transparent" data-images='["image4.jpg","image44.jpg"]'>
+                    <img src="image4.jpg" alt="Printemps" class="season-slide absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-all duration-700" data-index="0">
+                    <img src="image44.jpg" alt="Printemps" class="season-slide absolute inset-0 w-full h-full object-cover opacity-0 group-hover:scale-105 transition-all duration-700" data-index="1">
+                    <div class="absolute inset-0 bg-gradient-to-t from-white/90 via-white/40 to-white/10 z-[1]"></div>
+                    <div class="relative z-10 flex justify-between items-start w-full">
+                        <span class="text-[10px] tracking-widest uppercase font-semibold text-rose-600">04 / PRINTEMPS</span>
+                        <div class="flex gap-1 items-center">
+                            <span class="season-dot w-2 h-2 rounded-full bg-rose-400 transition-all" data-dot="0"></span>
+                            <span class="season-dot w-2 h-2 rounded-full bg-rose-300/50 transition-all" data-dot="1"></span>
+                        </div>
+                    </div>
+                    <div class="relative z-10 w-full">
+                        <h3 class="font-serif text-lg sm:text-xl font-medium leading-tight">Parfums de Printemps</h3>
+                        <p class="text-[10px] text-brand-gray mt-1 uppercase tracking-widest font-semibold">Floraux & Verts</p>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <!-- ================= الجزء الأول: المتجر (SHOP) ================= -->
+        <section id="tab-shop" class="tab-content hidden max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- عنوان القسم النشط حالياً -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-brand-accent pb-4 mb-6 mt-6 gap-4">
+                <div class="flex flex-col">
+                    <h3 class="text-lg font-serif font-medium tracking-wider flex items-center gap-2">
+                        <span id="active-season-indicator" class="w-2.5 h-2.5 rounded-full bg-brand-dark"></span>
+                        <span id="active-season-title">Parfums d'Été</span>
+                    </h3>
+                    <span class="text-[11px] text-brand-gray uppercase tracking-widest mt-1" id="season-items-count">0 Créations</span>
+                </div>
+                
+                <!-- الفلترة بحسب الجنس -->
+                <div class="flex border border-brand-accent rounded bg-brand-light">
+                    <button onclick="setGenderFilter('all')" id="filter-btn-all" class="px-4 py-2 text-xs font-semibold uppercase tracking-widest bg-brand-dark text-white rounded transition-colors">Tous</button>
+                    <button onclick="setGenderFilter('femme')" id="filter-btn-femme" class="px-4 py-2 text-xs font-semibold uppercase tracking-widest text-brand-gray hover:text-brand-dark transition-colors">Femmes</button>
+                    <button onclick="setGenderFilter('homme')" id="filter-btn-homme" class="px-4 py-2 text-xs font-semibold uppercase tracking-widest text-brand-gray hover:text-brand-dark transition-colors">Hommes</button>
+                </div>
+            </div>
+
+            <!-- شبكة عرض المنتجات الخاصة بالفصل المختار -->
+            <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mt-4">
+                <!-- سيتم توليد كروت المنتجات بشكل ديناميكي من الـ Javascript -->
+            </div>
+        </section>
+
+<!-- ================= الجزء الثاني: المفضلة (FAVORITES) ================= -->
+        <section id="tab-favorites" class="tab-content hidden max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center my-6">
+                <h2 class="text-xs tracking-[0.3em] uppercase text-brand-gold font-semibold mb-2">Vos Coups de Cœur</h2>
+                <h1 class="text-3xl font-serif text-brand-dark">Mes Favoris</h1>
+                <p class="text-xs text-brand-gray mt-2">Retrouvez ici les créations qui vous ont fait vibrer.</p>
+            </div>
+
+            <!-- شبكة عرض المفضلة -->
+            <div id="favorites-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mt-8">
+                <!-- سيتم ملؤها ديناميكياً -->
+            </div>
+
+            <!-- حالة المفضلة الفارغة -->
+            <div id="favorites-empty" class="hidden flex flex-col items-center justify-center py-20 text-center">
+                <div class="w-16 h-16 bg-brand-accent flex items-center justify-center rounded-full mb-4 text-brand-gray/60">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                </div>
+                <h3 class="font-serif text-lg font-medium text-brand-dark mb-1">Aucun parfum favori</h3>
+                <p class="text-xs text-brand-gray mb-6">Ajoutez vos créations favorites en cliquant sur l'icône cœur.</p>
+                <button onclick="switchTab('shop')" class="bg-brand-dark text-white text-xs tracking-widest uppercase px-6 py-3 hover:bg-[#333333] transition-all">
+                    Découvrir la boutique
+                </button>
+            </div>
+        </section>
+
+
+        <!-- ================= الجزء الثالث: السلة والدفع (CART & CHECKOUT) ================= -->
+        <section id="tab-cart" class="tab-content hidden max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center my-6">
+                <h2 class="text-xs tracking-[0.3em] uppercase text-brand-gold font-semibold mb-2">Finaliser l'Achat</h2>
+                <h1 class="text-3xl font-serif text-brand-dark">Mon Panier & Commande</h1>
+                <p class="text-xs text-brand-gray mt-2">Détails de vos achats et formulaire de paiement sécurisé à la livraison.</p>
+            </div>
+
+            <!-- نموذج الدفع وعناصر السلة مجتمعين في صفحة واحدة منسقة -->
+            <div id="cart-checkout-container" class="max-w-3xl mx-auto space-y-8 mt-8">
+                
+                <!-- 1. Articles dans le panier -->
+                <div class="bg-white p-6 rounded-lg border border-brand-accent">
+                    <h2 class="text-xs tracking-widest uppercase text-brand-gray mb-4 border-b pb-2 font-semibold">1. Articles dans le panier</h2>
+                    <!-- قائمة منتجات السلة التفاعلية -->
+                    <div id="cart-items-list" class="divide-y divide-brand-accent max-h-80 overflow-y-auto mb-2 pr-1">
+                        <!-- حقن ديناميكي -->
+                    </div>
+                </div>
+
+                <!-- 2. Informations de Livraison & Form -->
+                <div class="bg-white p-6 rounded-lg border border-brand-accent">
+                    <h2 class="text-xs tracking-widest uppercase text-brand-gray mb-6 border-b pb-2 font-semibold">2. Informations de Livraison</h2>
+                    
+                    <form id="cod-order-form" onsubmit="handleCODSubmit(event)" class="space-y-6">
+                        
+                        <!-- Inputs -->
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-xs uppercase tracking-wider text-brand-dark font-medium mb-1.5" for="name">Nom et Prénom <span class="text-red-500">*</span></label>
+                                <input type="text" id="cust-name" required class="w-full border border-brand-accent px-4 py-2.5 text-sm focus:outline-none focus:border-brand-dark rounded-md bg-brand-light/20" placeholder="Ex: Mohamed Alami">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs uppercase tracking-wider text-brand-dark font-medium mb-1.5" for="phone">Numéro de Téléphone <span class="text-red-500">*</span></label>
+                                <input type="tel" id="cust-phone" required class="w-full border border-brand-accent px-4 py-2.5 text-sm focus:outline-none focus:border-brand-dark rounded-md bg-brand-light/20" placeholder="Ex: 0550123456">
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs uppercase tracking-wider text-brand-dark font-medium mb-1.5" for="wilaya">Wilaya <span class="text-red-500">*</span></label>
+                                    <select id="cust-wilaya" onchange="onWilayaChange()" required class="w-full border border-brand-accent px-3 py-2.5 text-sm focus:outline-none focus:border-brand-dark bg-white rounded-md">
+                                        <!-- سيتم ملء الـ 58 ولاية تلقائياً -->
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs uppercase tracking-wider text-brand-dark font-medium mb-1.5" for="commune">Commune <span class="text-red-500">*</span></label>
+                                    <input type="text" id="cust-commune" required class="w-full border border-brand-accent px-4 py-2.5 text-sm focus:outline-none focus:border-brand-dark rounded-md bg-brand-light/20" placeholder="Ex: Oran Centre">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs uppercase tracking-wider text-brand-dark font-medium mb-1.5" for="address">Adresse Complète <span class="text-red-500">*</span></label>
+                                <textarea id="cust-address" required rows="3" class="w-full border border-brand-accent px-4 py-2.5 text-sm focus:outline-none focus:border-brand-dark rounded-md bg-brand-light/20" placeholder="Ex: Cité 100 logements, Bloc B N°04"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 3. Totals -->
+                        <div class="space-y-3 pt-6 border-t border-brand-accent text-sm">
+                            <h3 class="text-xs tracking-widest uppercase text-brand-dark mb-4 font-semibold text-center">3. Récapitulatif de Prix</h3>
+                            <div class="flex justify-between bg-brand-light/10 p-3 rounded">
+                                <span class="text-brand-gray">Sous-total</span>
+                                <span id="cart-subtotal" class="font-medium text-lg">0 DZD</span>
+                            </div>
+                            <div class="flex justify-between bg-brand-light/10 p-3 rounded">
+                                <span class="text-brand-gray">Frais de livraison</span>
+                                <span id="cart-shipping-cost" class="font-medium text-lg">0 DZD</span>
+                            </div>
+                            <div class="flex justify-between text-base font-semibold p-4 mt-2 bg-brand-accent/20 rounded-md text-brand-dark">
+                                <span>TOTAL À PAYER</span>
+                                <span id="cart-grand-total" class="text-xl">0 DZD</span>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="pt-4">
+                            <button type="submit" class="w-full bg-brand-dark text-white py-4 text-xs tracking-widest uppercase hover:bg-[#333333] transition-all duration-300 font-bold flex items-center justify-center space-x-2 rounded-md shadow-lg">
+                                <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span class="text-sm">CONFIRMER LA COMMANDE</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- حالة السلة الفارغة -->
+            <div id="cart-empty-state" class="hidden flex flex-col items-center justify-center py-20 text-center">
+                <div class="w-16 h-16 bg-brand-accent flex items-center justify-center rounded-full mb-4 text-brand-gray/60">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                </div>
+                <h3 class="font-serif text-lg font-medium text-brand-dark mb-1">Votre panier est vide</h3>
+                <p class="text-xs text-brand-gray mb-6">Explorez nos parfums par saison et ajoutez vos coups de cœur.</p>
+                <button onclick="switchTab('shop')" class="bg-brand-dark text-white text-xs tracking-widest uppercase px-6 py-3 hover:bg-[#333333] transition-all">
+                    Acheter maintenant
+                </button>
+            </div>
+        </section>
+
+        <!-- ================= نافذة نجاح الطلب وإتمام العملية ================= -->
+        <section id="view-success" class="hidden py-16 text-center max-w-xl mx-auto px-4">
+            <div class="w-16 h-16 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-6 text-emerald-500 border border-emerald-200 shadow-sm">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <h1 class="text-3xl font-serif mb-4 text-brand-dark">Commande Confirmée !</h1>
+            <p class="text-brand-gray text-sm mb-6 leading-relaxed">
+                Merci pour votre confiance. Votre commande a été enregistrée avec succès sous la référence <strong id="success-ref" class="text-brand-dark">#LP-0000</strong>. Notre service client vous contactera par téléphone dans les plus brefs délais pour valider l'expédition.
+            </p>
+            <button onclick="switchTab('shop')" class="bg-brand-dark text-white px-8 py-3.5 text-xs tracking-widest uppercase hover:bg-[#333333] transition-all duration-300 rounded-sm">
+                Retour à l'accueil
+            </button>
+        </section>
+
+    </main>
+
+    <!-- ================= الفوتر الاحترافي ================= -->
+    <footer id="site-footer" class="bg-brand-dark text-white pt-16 pb-28 px-4 sm:px-6 lg:px-8 border-t border-brand-accent">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div>
+                <h3 class="text-xl font-serif tracking-[0.2em] mb-4">LUXYA PARFUM</h3>
+                <p class="text-xs text-brand-gray leading-relaxed max-w-sm">Découvrez l'art de la parfumerie française à travers nos collections saisonnières. Des fragrances uniques qui racontent votre histoire.</p>
+            </div>
+            <div>
+                <h4 class="text-xs tracking-widest uppercase font-semibold mb-4 text-brand-gold">Service Client</h4>
+                <ul class="space-y-2 text-xs text-brand-gray">
+                    <li><a href="#" class="hover:text-white transition-colors">Livraison 58 Wilayas</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Paiement à la livraison</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Contactez-nous</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">FAQ</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-xs tracking-widest uppercase font-semibold mb-4 text-brand-gold">Nous Suivre</h4>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full border border-brand-gray flex items-center justify-center hover:bg-white hover:text-brand-dark transition-colors group">
+                        <svg class="w-4 h-4 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm3.98-10.98a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full border border-brand-gray flex items-center justify-center hover:bg-white hover:text-brand-dark transition-colors group">
+                        <svg class="w-4 h-4 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full border border-brand-gray flex items-center justify-center hover:bg-white hover:text-brand-dark transition-colors group">
+                        <svg class="w-4 h-4 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 2.78-1.15 5.54-3.33 7.65-2.22 2.14-5.4 3.14-8.49 2.59-2.85-.5-5.32-2.5-6.3-5.22-1.01-2.8-.46-6.19 1.55-8.44 2.15-2.4 5.75-3.37 8.8-2.3v4.06c-1.85-.82-4.14-.38-5.45 1.15-1.26 1.46-1.37 3.8-.25 5.37 1.05 1.48 2.94 1.95 4.6 1.5 1.78-.49 2.9-2.3 2.9-4.19.01-6.27.02-12.53.01-18.79z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-12 pt-6 border-t border-brand-gray/30 text-center text-[10px] text-brand-gray uppercase tracking-widest">
+            &copy; 2026 LUXYA PARFUM. TOUS DROITS RÉSERVÉS.
+        </div>
+    </footer>
+
+
+    <!-- ================= شريط التنقل السفلي الفاخر (Bottom Navigation Bar) ================= -->
+    <nav class="fixed bottom-0 left-0 right-0 z-50 bg-brand-light/95 backdrop-blur-md border-t border-brand-accent shadow-xl h-16 sm:h-20 flex items-center justify-around px-2 sm:px-4">
+        <!-- زر الرئيسية (Home) -->
+        <button onclick="switchTab('home')" id="nav-btn-home" class="flex flex-col items-center justify-center space-y-1 w-14 sm:w-16 text-brand-dark transition-all duration-200">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+            <span class="text-[9px] tracking-widest uppercase font-medium">Accueil</span>
+        </button>
+
+        <!-- زر المتجر (Shop) -->
+        <button onclick="switchTab('shop')" id="nav-btn-shop" class="flex flex-col items-center justify-center space-y-1 w-14 sm:w-14 sm:w-16 text-brand-gray transition-all duration-200">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+            </svg>
+            <span class="text-[9px] tracking-widest uppercase font-medium">Boutique</span>
+        </button>
+
+        <!-- زر المفضلة (Favorites) -->
+        <button onclick="switchTab('favorites')" id="nav-btn-favorites" class="flex flex-col items-center justify-center space-y-1 w-14 sm:w-16 text-brand-gray transition-all duration-200 relative">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+            <span class="text-[9px] tracking-widest uppercase font-medium">Favoris</span>
+            <span id="fav-badge" class="absolute top-0 right-3 bg-brand-gold text-white text-[8px] w-4 h-4 rounded-full flex items-center justify-center font-bold hidden">0</span>
+        </button>
+
+        <!-- زر السلة (Cart) -->
+        <button onclick="switchTab('cart')" id="nav-btn-cart" class="flex flex-col items-center justify-center space-y-1 w-14 sm:w-16 text-brand-gray transition-all duration-200 relative">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+            </svg>
+            <span class="text-[9px] tracking-widest uppercase font-medium">Mon Panier</span>
+            <span id="cart-badge-bottom" class="absolute top-0 right-3 bg-brand-dark text-white text-[8px] w-4 h-4 rounded-full flex items-center justify-center font-bold hidden">0</span>
+        </button>
+    </nav>
+
+    <!-- ================= الجزء الإضافي: صفحة تفاصيل المنتج (PRODUCT PAGE) ================= -->
+    <section id="tab-product" class="tab-content hidden max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 mb-24 md:mb-32">
+        <div class="mb-6 flex items-center space-x-2 text-xs tracking-widest uppercase text-brand-gray">
+            <button onclick="switchTab('shop')" class="hover:text-brand-dark flex items-center space-x-1">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                <span>Retour à la Boutique</span>
+            </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start">
+            <!-- Product Image -->
+            <div class="bg-brand-accent/20 aspect-square w-full rounded-2xl flex items-center justify-center p-8 md:p-16 border border-brand-accent/50">
+                <img id="page-product-image" src="" alt="" class="max-h-full max-w-full object-contain filter drop-shadow-xl hover:scale-105 transition-transform duration-500">
+            </div>
+
+            <!-- Product Details -->
+            <div class="flex flex-col h-full py-4 space-y-8">
+                <div>
+                    <h1 id="page-product-name" class="text-3xl md:text-5xl font-serif font-semibold tracking-wide text-brand-dark mb-2">Nom du Parfum</h1>
+                    <p id="page-product-creator" class="text-sm md:text-base tracking-widest text-brand-gray italic">Par Parfumeur</p>
+                    <div id="page-product-price" class="text-2xl md:text-3xl font-bold text-brand-dark mt-6">0 DZD</div>
+                </div>
+
+                <!-- اختيار حجم الزجاجة -->
+                <div class="space-y-4 pt-4 border-t border-brand-accent">
+                    <label class="block text-xs md:text-sm tracking-widest uppercase text-brand-gray font-semibold">Sélectionnez la Taille du Flacon</label>
+                    <div class="grid grid-cols-3 gap-3">
+                        <button onclick="changePageSize(100)" id="page-size-100" class="py-4 border border-brand-dark bg-brand-light text-brand-dark text-xs md:text-sm font-bold tracking-widest uppercase transition-all rounded shadow-sm">100 ml</button>
+                        <button onclick="changePageSize(150)" id="page-size-150" class="py-4 border border-brand-accent text-brand-gray hover:border-brand-dark hover:text-brand-dark text-xs md:text-sm font-bold tracking-widest uppercase transition-all rounded">150 ml</button>
+                        <button onclick="changePageSize(10)" id="page-size-10" class="py-4 border border-brand-accent text-brand-gray hover:border-brand-dark hover:text-brand-dark text-xs md:text-sm font-bold tracking-widest uppercase transition-all rounded">10 ml</button>
+                    </div>
+                </div>
+
+                <!-- تفاصيل منسدلة Accordion -->
+                <div class="border-t border-b border-brand-accent py-2 space-y-2 flex-grow">
+                    <div class="border-b flex flex-col justify-center border-brand-accent py-4">
+                        <button onclick="togglePageAccordion('desc')" class="w-full flex justify-between items-center text-left focus:outline-none group">
+                            <span class="text-sm tracking-widest uppercase font-semibold text-brand-dark group-hover:text-brand-gold transition-colors">Description du Parfum</span>
+                            <span id="page-icon-desc" class="text-xs transition-transform transform">▼</span>
+                        </button>
+                        <div id="page-desc-text" class="text-sm text-brand-gray mt-4 leading-relaxed hidden"></div>
+                    </div>
+                    <div class="py-4">
+                        <button onclick="togglePageAccordion('comp')" class="w-full flex justify-between items-center text-left focus:outline-none group">
+                            <span class="text-sm tracking-widest uppercase font-semibold text-brand-dark group-hover:text-brand-gold transition-colors">Notes & Composition</span>
+                            <span id="page-icon-comp" class="text-xs transition-transform transform">▼</span>
+                        </button>
+                        <div id="page-comp-text" class="text-xs md:text-sm font-mono text-brand-gray mt-4 leading-relaxed hidden"></div>
+                    </div>
+                </div>
+
+                <!-- Add to cart -->
+                <div class="pt-4">
+                    <button onclick="addPageProductToCart()" class="w-full bg-brand-dark text-white py-5 text-sm md:text-base tracking-[0.2em] uppercase hover:bg-brand-gold transition-colors font-bold flex items-center justify-center space-x-3 rounded shadow-lg transform hover:-translate-y-1">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                        <span>Ajouter au panier</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ================= منطق وبرمجة التطبيق التفاعلي (Javascript Store Engine) ================= -->
+    <script>
+        // قاعدة البيانات المتكاملة لعطور الفصول الأربعة الفاخرة
+        const productsDatabase = {
+            // عطور الصيف (Summer)
+            'neroli-botanica': {\n                gender: 'femme',
+                id: 'neroli-botanica',
+                name: 'NÉROLI BOTANICA',
+                creator: 'Par Anne Flipo',
+                season: 'summer',
+                price: { 100: 12900, 150: 17500, 10: 2900 },
+                image: 'image1.jpg',
+                description: "Un choc olfactif hespéridé et floral. Néroli Botanica capture l'essence pure de la fleur d'oranger fraîchement cueillie, dynamisée par des notes de gingembre vert et enveloppée de muscs soyeux.",
+                composition: "ALCOHOL DENAT. • PARFUM (FRAGRANCE) • AQUA (WATER) • LIMONENE • LINALOOL • GERANIOL • CITRAL • CITRONELLOL."
+            },
+            'orange-santal': {\n                gender: 'mixte',
+                id: 'orange-santal',
+                name: 'ORANGE X SANTAL',
+                creator: 'Par Natalie Gracia-Cetto',
+                season: 'summer',
+                price: { 100: 11800, 150: 16000, 10: 2500 },
+                image: 'image11.jpg',
+                description: "Une fraîcheur enveloppante et boisée. L'orange amère naturelle d'Italie pétille au contact d'un bois de santal d'Australie crémeux, créant un contraste vibrant et lumineux d'une grande sophistication.",
+                composition: "ALCOHOL DENAT. • PARFUM (FRAGRANCE) • AQUA (WATER) • CITRONELLOL • LIMONENE • LINALOOL • FARNESOL • ISOEUGENOL."
+            },
+
+            // عطور الخريف (Autumn)
+            'ambre-latte': {\n                gender: 'homme',
+                id: 'ambre-latte',
+                name: 'AMBRE LATTE',
+                creator: 'Par Jordi Fernández',
+                season: 'autumn',
+                price: { 100: 12900, 150: 17500, 10: 2900 },
+                image: 'image2.jpg',
+                description: "Ambre Latte est une invitation sensorielle irrésistible. Un parfum ambré boisé d'une volupté totale où la rondeur du lait chaud fusionne avec la complexité boisée de l'ambre et l'intensité aromatique du café.",
+                composition: "ALCOHOL DENAT. • PARFUM (FRAGRANCE) • AQUA (WATER) • COUMARIN • LIMONENE • LINALOOL • BENZYL BENZOATE • CITRAL • EUGENOL."
+            },
+            'santal-basmati': {\n                gender: 'mixte',
+                id: 'santal-basmati',
+                name: 'SANTAL BASMATI',
+                creator: 'Par Alexandra Carlin',
+                season: 'autumn',
+                price: { 100: 13800, 150: 18500, 10: 3200 },
+                image: 'image22.jpg',
+                description: "Un parfum texture enveloppant et soyeux. L'alliance inattendue et envoûtante d'un bois de santal crémeux et des notes lactées de riz basmati fraîchement cuit.",
+                composition: "ALCOHOL DENAT. • PARFUM (FRAGRANCE) • AQUA (WATER) • FARNESOL • ISOEUGENOL • BENZYL ALCOHOL."
+            },
+
+            // عطور الشتاء (Winter)
+            'velvet-iris': {\n                gender: 'femme',
+                id: 'velvet-iris',
+                name: 'VELVET IRIS',
+                creator: 'Par Dominique Ropion',
+                season: 'winter',
+                price: { 100: 13500, 150: 18900, 10: 3100 },
+                image: 'image3.jpg',
+                description: "Ode à la délicatesse des pétales de l'iris. Velvet Iris est un parfum riche, poudré et crémeux, complété par des notes boisées et veloutées de cèdre et de santal blanc, laissant un sillage divinement charnel.",
+                composition: "ALCOHOL DENAT. • PARFUM (FRAGRANCE) • AQUA (WATER) • ALPHA-ISOMETHYL IONONE • GERANIOL • CITRONELLOL • BENZYL SALICYLATE."
+            },
+            'cuir-velours': {\n                gender: 'homme',
+                id: 'cuir-velours',
+                name: 'CUIR VELOURS',
+                creator: 'Par Sidonie Lancesseur',
+                season: 'winter',
+                price: { 100: 14200, 150: 19500, 10: 3400 },
+                image: 'image33.jpg',
+                description: "Un parfum cuiré hypnotique et sensuel. Des notes de daim velouté caressées par une vanille noire addictive et réchauffées d'une pointe d'encens mystique.",
+                composition: "ALCOHOL DENAT. • PARFUM (FRAGRANCE) • AQUA (WATER) • VANILLIN • COUMARIN • BENZYL BENZOATE • CINNAMYL ALCOHOL."
+            },
+
+            // عطور الربيع (Spring)
+            'rose-imperial': {\n                gender: 'femme',
+                id: 'rose-imperial',
+                name: 'ROSE IMPÉRIAL',
+                creator: 'Par Quentin Bisch',
+                season: 'spring',
+                price: { 100: 13200, 150: 18200, 10: 3000 },
+                image: 'image4.jpg',
+                description: "Une rose moderne, lumineuse et royale. La rose de Damas fraîchement éclose fusionne avec les vibrations vertes du bourgeon de cassis et la douceur veloutée du musc blanc.",
+                composition: "ALCOHOL DENAT. • PARFUM (FRAGRANCE) • AQUA (WATER) • GERANIOL • CITRONELLOL • LINALOOL • CITRAL • LIMONENE."
+            },
+            'jasmin-absolu': {\n                gender: 'femme',
+                id: 'jasmin-absolu',
+                name: 'JASMIN SUPRÊME',
+                creator: 'Par Marie Salamagne',
+                season: 'spring',
+                price: { 100: 12600, 150: 17200, 10: 2800 },
+                image: 'image44.jpg',
+                description: "L'éclat vertigineux d'un jasmin blanc sous la rosée printanière. Une harmonie florale pure, magnifiée par la fraîcheur croquante du thé vert d'Asie.",
+                composition: "ALCOHOL DENAT. • PARFUM (FRAGRANCE) • AQUA (WATER) • BENZYL BENZOATE • BENZYL SALICYLATE • LINALOOL • GERANIOL."
+            }
+        };
+
+        // الـ 58 ولاية جزائرية كاملة مع كلفة شحن مدروسة
+        const algeriaWilayas = [
+            { code: 1, name: "Adrar", shipping: 800 },
+            { code: 2, name: "Chlef", shipping: 550 },
+            { code: 3, name: "Laghouat", shipping: 600 },
+            { code: 4, name: "Oum El Bouaghi", shipping: 550 },
+            { code: 5, name: "Batna", shipping: 550 },
+            { code: 6, name: "Béjaïa", shipping: 500 },
+            { code: 7, name: "Biskra", shipping: 600 },
+            { code: 8, name: "Béchar", shipping: 800 },
+            { code: 9, name: "Blida", shipping: 400 },
+            { code: 10, name: "Bouira", shipping: 500 },
+            { code: 11, name: "Tamanrasset", shipping: 900 },
+            { code: 12, name: "Tébessa", shipping: 600 },
+            { code: 13, name: "Tlemcen", shipping: 550 },
+            { code: 14, name: "Tiaret", shipping: 550 },
+            { code: 15, name: "Tizi Ouzou", shipping: 450 },
+            { code: 16, name: "Alger", shipping: 350 },
+            { code: 17, name: "Djelfa", shipping: 550 },
+            { code: 18, name: "Jijel", shipping: 500 },
+            { code: 19, name: "Sétif", shipping: 500 },
+            { code: 20, name: "Saïda", shipping: 550 },
+            { code: 21, name: "Skikda", shipping: 500 },
+            { code: 22, name: "Sidi Bel Abbès", shipping: 550 },
+            { code: 23, name: "Annabba", shipping: 500 },
+            { code: 24, name: "Guelma", shipping: 550 },
+            { code: 25, name: "Constantine", shipping: 500 },
+            { code: 26, name: "Médéa", shipping: 450 },
+            { code: 27, name: "Mostaganem", shipping: 550 },
+            { code: 28, name: "M'Sila", shipping: 550 },
+            { code: 29, name: "Mascara", shipping: 550 },
+            { code: 30, name: "Ouargla", shipping: 700 },
+            { code: 31, name: "Oran", shipping: 500 },
+            { code: 32, name: "El Bayadh", shipping: 650 },
+            { code: 33, name: "Illizi", shipping: 900 },
+            { code: 34, name: "Bordj Bou Arréridj", shipping: 500 },
+            { code: 35, name: "Boumerdès", shipping: 400 },
+            { code: 36, name: "El Tarf", shipping: 600 },
+            { code: 37, name: "Tindouf", shipping: 950 },
+            { code: 38, name: "Tissemsilt", shipping: 550 },
+            { code: 39, name: "El Oued", shipping: 650 },
+            { code: 40, name: "Khenchela", shipping: 600 },
+            { code: 41, name: "Souk Ahras", shipping: 600 },
+            { code: 42, name: "Tipaza", shipping: 450 },
+            { code: 43, name: "Mila", shipping: 550 },
+            { code: 44, name: "Aïn Defla", shipping: 500 },
+            { code: 45, name: "Naâma", shipping: 650 },
+            { code: 46, name: "Aïn Témouchent", shipping: 550 },
+            { code: 47, name: "Ghardaïa", shipping: 650 },
+            { code: 48, name: "Relizane", shipping: 550 },
+            { code: 49, name: "El M'Ghair", shipping: 700 },
+            { code: 50, name: "El Meniaa", shipping: 700 },
+            { code: 51, name: "Ouled Djellal", shipping: 650 },
+            { code: 52, name: "Bordj Baji Mokhtar", shipping: 950 },
+            { code: 53, name: "Béni Abbès", shipping: 850 },
+            { code: 54, name: "Timimoun", shipping: 800 },
+            { code: 55, name: "Touggourt", shipping: 700 },
+            { code: 56, name: "Djanet", shipping: 950 },
+            { code: 57, name: "In Salah", shipping: 850 },
+            { code: 58, name: "In Guezzam", shipping: 950 }
+        ];
+
+        // حالة التطبيق (State Manager)
+        let currentSeason = 'summer';
+        let cart = [];
+        let favorites = [];
+        let selectedProductForPage = null;
+        let selectedSizeForPage = 100;
+        let activePageAccordions = { desc: false, comp: false };
+
+        // عند تهيئة الصفحة
+        window.onload = function() {
+            populateWilayasDropdown();
+            selectSeason('summer');
+            updateCartUI();
+            updateFavoritesUI();
+            switchTab('home');
+            initSeasonSliders();
+        };
+
+        // ===== Season Card Image Carousel Engine =====
+        function initSeasonSliders() {
+            document.querySelectorAll('.season-slider').forEach(card => {
+                let currentIdx = 0;
+                const slides = card.querySelectorAll('.season-slide');
+                const dots = card.querySelectorAll('.season-dot');
+                if (slides.length < 2) return;
+
+                function showSlide(idx) {
+                    slides.forEach((s, i) => {
+                        s.style.opacity = i === idx ? '0.85' : '0';
+                    });
+                    dots.forEach((d, i) => {
+                        d.style.opacity = i === idx ? '1' : '0.4';
+                        d.style.transform = i === idx ? 'scale(1.3)' : 'scale(1)';
+                    });
+                    currentIdx = idx;
+                }
+
+                // Auto-rotate every 3 seconds
+                let timer = setInterval(() => {
+                    showSlide((currentIdx + 1) % slides.length);
+                }, 3000);
+
+                // Touch/swipe support
+                let startX = 0, isSwiping = false;
+                card.addEventListener('touchstart', e => {
+                    startX = e.touches[0].clientX;
+                    isSwiping = false;
+                }, { passive: true });
+                card.addEventListener('touchmove', e => {
+                    const diff = e.touches[0].clientX - startX;
+                    if (Math.abs(diff) > 20) isSwiping = true;
+                }, { passive: true });
+                card.addEventListener('touchend', e => {
+                    const diff = e.changedTouches[0].clientX - startX;
+                    if (Math.abs(diff) > 40) {
+                        clearInterval(timer);
+                        showSlide(diff < 0 ? 1 : 0);
+                        timer = setInterval(() => {
+                            showSlide((currentIdx + 1) % slides.length);
+                        }, 3000);
+                    }
+                });
+
+                // Prevent onclick when swiping
+                card.addEventListener('click', e => {
+                    if (isSwiping) { e.stopPropagation(); e.preventDefault(); isSwiping = false; }
+                }, true);
+
+                // Mouse drag support (desktop)
+                let mouseStartX = 0;
+                card.addEventListener('mousedown', e => { mouseStartX = e.clientX; isSwiping = false; });
+                card.addEventListener('mouseup', e => {
+                    const diff = e.clientX - mouseStartX;
+                    if (Math.abs(diff) > 40) {
+                        isSwiping = true;
+                        clearInterval(timer);
+                        showSlide(diff < 0 ? 1 : 0);
+                        timer = setInterval(() => {
+                            showSlide((currentIdx + 1) % slides.length);
+                        }, 3000);
+                    }
+                });
+
+                showSlide(0);
+            });
+        }
+
+        
+        let currentGender = 'all';
+        let qvProductId = null;
+        let qvSelectedSize = 100;
+
+        function setGenderFilter(gender) {
+            currentGender = gender;
+            const btns = ['all', 'femme', 'homme'];
+            btns.forEach(b => {
+                const el = document.getElementById(`filter-btn-${b}`);
+                if(el) {
+                    if(b === gender) {
+                        el.className = "px-4 py-2 text-xs font-semibold uppercase tracking-widest bg-brand-dark text-white rounded transition-colors";
+                    } else {
+                        el.className = "px-4 py-2 text-xs font-semibold uppercase tracking-widest text-brand-gray hover:text-brand-dark transition-colors";
+                    }
+                }
+            });
+            renderProducts();
+        }
+
+        function openQuickSidebar(productId, event) {
+            if(event) {
+                event.stopPropagation();
+                event.preventDefault();
+            }
+            const p = productsDatabase[productId];
+            if(!p) return;
+            qvProductId = productId;
+            
+            document.getElementById('qv-name').innerText = p.name;
+            document.getElementById('qv-image').src = p.image;
+            document.getElementById('qv-creator').innerText = p.creator;
+            
+            setQvSize(100);
+            
+            const overlay = document.getElementById('quick-view-overlay');
+            const sidebar = document.getElementById('quick-view-sidebar');
+            
+            overlay.classList.remove('hidden');
+            setTimeout(() => {
+                overlay.classList.remove('opacity-0');
+                sidebar.classList.remove('translate-x-full');
+            }, 10);
+        }
+
+        function closeQuickSidebar() {
+            const overlay = document.getElementById('quick-view-overlay');
+            const sidebar = document.getElementById('quick-view-sidebar');
+            
+            overlay.classList.add('opacity-0');
+            sidebar.classList.add('translate-x-full');
+            
+            setTimeout(() => {
+                overlay.classList.add('hidden');
+            }, 300);
+        }
+
+        function setQvSize(size) {
+            qvSelectedSize = size;
+            const p = productsDatabase[qvProductId];
+            if(p) {
+                document.getElementById('qv-price').innerText = `${p.price[size].toLocaleString()} DZD`;
+            }
+            
+            [100, 150, 10].forEach(s => {
+                const el = document.getElementById(`qv-size-${s}`);
+                if(el) {
+                    if(s === size) {
+                        el.className = "py-2.5 border border-brand-dark bg-brand-dark text-white text-[10px] sm:text-xs font-bold tracking-widest uppercase transition-all rounded shadow-sm";
+                    } else {
+                        el.className = "py-2.5 border border-brand-accent text-brand-gray hover:border-brand-dark hover:text-brand-dark text-[10px] sm:text-xs font-bold tracking-widest uppercase transition-all rounded";
+                    }
+                }
+            });
+        }
+
+        function addQvToCart() {
+            const p = productsDatabase[qvProductId];
+            if(!p) return;
+            
+            const existingIndex = cart.findIndex(item => item.id === p.id && item.size === qvSelectedSize);
+            if (existingIndex > -1) {
+                cart[existingIndex].quantity += 1;
+            } else {
+                cart.push({
+                    id: p.id,
+                    name: p.name,
+                    image: p.image,
+                    size: qvSelectedSize,
+                    price: p.price[qvSelectedSize],
+                    quantity: 1
+                });
+            }
+
+            updateCartUI();
+            closeQuickSidebar();
+            
+            const badgeTop = document.getElementById('header-cart-badge');
+            const badgeBottom = document.getElementById('cart-badge-bottom');
+            if(badgeTop) { badgeTop.classList.add('scale-150'); setTimeout(() => badgeTop.classList.remove('scale-150'), 300); }
+            if(badgeBottom) { badgeBottom.classList.add('scale-150'); setTimeout(() => badgeBottom.classList.remove('scale-150'), 300); }
+        }
+\n        // الدخول واستكشاف المنتجات
+        function selectAllProducts() {
+            switchTab('shop');
+            selectSeason('all');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        function exploreSeason(seasonId) {
+            switchTab('shop');
+            selectSeason(seasonId);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // تغيير التبويبات النشطة بشريط التنقل السفلي
+        function switchTab(tabId) {
+            // إخفاء كل الصفحات
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById('view-success').classList.add('hidden');
+
+            // إظهار الصفحة المختارة
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+
+            // تحديث ستايل الأيقونات
+            const tabs = ['home', 'shop', 'favorites', 'cart'];
+            tabs.forEach(t => {
+                const btn = document.getElementById(`nav-btn-${t}`);
+                if (!btn) return;
+                if (t === tabId) {
+                    btn.classList.add('text-brand-dark');
+                    btn.classList.remove('text-brand-gray');
+                } else {
+                    btn.classList.add('text-brand-gray');
+                    btn.classList.remove('text-brand-dark');
+                }
+            });
+
+            // تحديث الواجهات المعنية
+            if (tabId === 'cart') {
+                updateCartUI();
+            } else if (tabId === 'favorites') {
+                updateFavoritesUI();
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // تحديد الموسم المختار من بطاقات الفصول الأربعة
+        function selectSeason(seasonId) {
+            currentSeason = seasonId;
+
+            // تحديث ستايل كروت الفصول
+            const seasons = ['summer', 'autumn', 'winter', 'spring'];
+            const seasonsTitles = {
+                'summer': "Parfums d'Été",
+                'autumn': "Parfums d'Automne",
+                'winter': "Parfums d'Hiver",
+                'spring': "Parfums de Printemps"
+            };
+
+            seasons.forEach(s => {
+                const card = document.getElementById(`season-card-${s}`);
+                if (!card) return;
+                if (s === seasonId) {
+                    card.classList.add('ring-brand-gold', 'scale-[1.02]');
+                    card.classList.remove('ring-transparent');
+                } else {
+                    card.classList.remove('ring-brand-gold', 'scale-[1.02]');
+                    card.classList.add('ring-transparent');
+                }
+            });
+
+            // تحديث العنوان ومؤشر الموسم
+            if (seasonId === 'all') {
+                document.getElementById('active-season-title').innerText = "Toutes les Créations";
+            } else {
+                document.getElementById('active-season-title').innerText = seasonsTitles[seasonId];
+            }
+            
+            // تحديث لون الدائرة الصغيرة بناءً على الفصل
+            const indicator = document.getElementById('active-season-indicator');
+            indicator.className = "w-2.5 h-2.5 rounded-full";
+            if (seasonId === 'summer') indicator.classList.add('bg-amber-400');
+            if (seasonId === 'autumn') indicator.classList.add('bg-amber-700');
+            if (seasonId === 'winter') indicator.classList.add('bg-blue-400');
+            if (seasonId === 'spring') indicator.classList.add('bg-rose-300');
+
+            // عرض المنتجات الخاصة بالفصل المختار
+            renderProducts();
+        }
+
+        // عرض بطاقات العطور ديناميكياً للفصل المختار
+        function renderProducts() {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = '';
+
+            // تصفية المنتجات حسب الفصل
+            let filteredProducts;
+            if (currentSeason === 'all') {
+                filteredProducts = Object.values(productsDatabase);
+            } else {
+                filteredProducts = Object.values(productsDatabase).filter(p => p.season === currentSeason);
+            }
+            
+            // Apply Gender Filter
+            if (typeof currentGender !== 'undefined' && currentGender !== 'all') {
+                filteredProducts = filteredProducts.filter(p => p.gender === currentGender || p.gender === 'mixte');
+            }
+
+            document.getElementById('season-items-count').innerText = `${filteredProducts.length} Création(s)`;
+
+            filteredProducts.forEach(product => {
+                const isFav = favorites.includes(product.id);
+                const card = document.createElement('div');
+                card.className = "group relative bg-white border border-brand-accent rounded-lg overflow-hidden flex flex-col justify-between p-3 sm:p-4 hover:shadow-sm transition-all duration-300";
+                
+                // هيكل الكرت الفاخر
+                card.innerHTML = `
+                    <div class="relative aspect-square w-full bg-brand-light/50 rounded flex items-center justify-center p-4 cursor-pointer overflow-hidden mb-3" onclick="openProductPage('${product.id}')">
+                        <img src="${product.image}" alt="${product.name}" class="max-h-full object-contain transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    
+                    <!-- زر حفظ بالمفضلة -->
+                    <button onclick="toggleFavorite('${product.id}')" class="absolute top-5 right-5 p-2 bg-white/80 backdrop-blur-sm rounded-full shadow-sm text-brand-dark hover:text-rose-500 transition-colors focus:outline-none z-10">
+                        <svg class="w-5 h-5 heart-pop ${isFav ? 'fill-rose-500 text-rose-500' : 'text-brand-dark'}" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                        </svg>
+                    </button>
+
+                    <div class="flex-grow flex flex-col justify-between">
+                        <div class="cursor-pointer" onclick="openProductPage('${product.id}')">
+                            <h4 class="font-serif text-sm sm:text-base font-semibold text-brand-dark tracking-wide leading-snug truncate">${product.name}</h4>
+                            <p class="text-[10px] text-brand-gray italic mt-0.5">${product.creator}</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+                            <span class="text-xs sm:text-sm font-bold text-brand-dark">${product.price[100].toLocaleString()} DZD</span>
+                            <button onclick="openQuickSidebar('${product.id}', event)" class="p-2 bg-brand-dark text-white rounded hover:bg-[#333333] transition-colors relative z-20 tooltip-trigger" title="Aperçu rapide">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // تبديل حالة حفظ المنتج في المفضلة
+        function toggleFavorite(productId) {
+            const index = favorites.indexOf(productId);
+            if (index > -1) {
+                favorites.splice(index, 1);
+            } else {
+                favorites.push(productId);
+            }
+            updateFavoritesUI();
+            renderProducts();
+        }
+
+        // تحديث واجهة المفضلة
+        function updateFavoritesUI() {
+            const grid = document.getElementById('favorites-grid');
+            const emptyState = document.getElementById('favorites-empty');
+            
+            // تحديث شارات المفضلة (Badge)
+            const badge = document.getElementById('fav-badge');
+            if (favorites.length > 0) {
+                badge.innerText = favorites.length;
+                badge.classList.remove('hidden');
+                grid.classList.remove('hidden');
+                emptyState.classList.add('hidden');
+            } else {
+                badge.classList.add('hidden');
+                grid.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+            }
+
+            grid.innerHTML = '';
+            favorites.forEach(favId => {
+                const product = productsDatabase[favId];
+                if (!product) return;
+
+                const card = document.createElement('div');
+                card.className = "group relative bg-white border border-brand-accent rounded-lg overflow-hidden flex flex-col justify-between p-3 sm:p-4 hover:shadow-sm transition-all duration-300";
+                card.innerHTML = `
+                    <div class="relative aspect-square w-full bg-brand-light/50 rounded flex items-center justify-center p-4 cursor-pointer overflow-hidden mb-3" onclick="openProductPage('${product.id}')">
+                        <img src="${product.image}" alt="${product.name}" class="max-h-full object-contain">
+                    </div>
+                    
+                    <button onclick="toggleFavorite('${product.id}')" class="absolute top-5 right-5 p-2 bg-white/80 rounded-full shadow-sm text-rose-500 hover:opacity-75 transition-colors focus:outline-none z-10">
+                        <svg class="w-5 h-5 fill-rose-500 text-rose-500" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                        </svg>
+                    </button>
+
+                    <div class="flex-grow flex flex-col justify-between">
+                        <div class="cursor-pointer" onclick="openProductPage('${product.id}')">
+                            <h4 class="font-serif text-sm sm:text-base font-semibold text-brand-dark tracking-wide leading-snug truncate">${product.name}</h4>
+                            <p class="text-[10px] text-brand-gray italic mt-0.5">${product.creator}</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+                            <span class="text-xs sm:text-sm font-bold text-brand-dark">${product.price[100].toLocaleString()} DZD</span>
+                            <button onclick="openQuickSidebar('${product.id}', event)" class="p-2 bg-brand-dark text-white rounded hover:bg-[#333333] transition-colors relative z-20 tooltip-trigger" title="Aperçu rapide">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // فتح صفحة تفاصيل العطر
+        function openProductPage(productId) {
+            const product = productsDatabase[productId];
+            if (!product) return;
+
+            selectedProductForPage = product;
+            selectedSizeForPage = 100; // الحجم الافتراضي
+
+            document.getElementById('page-product-image').src = product.image;
+            document.getElementById('page-product-image').alt = product.name;
+            document.getElementById('page-product-name').innerText = product.name;
+            document.getElementById('page-product-creator').innerText = product.creator;
+            document.getElementById('page-desc-text').innerText = product.description;
+            document.getElementById('page-comp-text').innerText = product.composition;
+
+            updatePagePriceAndSizes();
+
+            // إخفاء الـ Accordions تلقائياً عند الفتح
+            activePageAccordions = { desc: false, comp: false };
+            document.getElementById('page-desc-text').classList.add('hidden');
+            document.getElementById('page-comp-text').classList.add('hidden');
+            document.getElementById('page-icon-desc').innerText = '▼';
+            document.getElementById('page-icon-comp').innerText = '▼';
+
+            switchTab('product');
+        }
+
+        // تغيير الحجم داخل صفحة العطر
+        function changePageSize(size) {
+            selectedSizeForPage = size;
+            updatePagePriceAndSizes();
+        }
+
+        // تحديث الأسعار والأزرار في الصفحة
+        function updatePagePriceAndSizes() {
+            const product = selectedProductForPage;
+            if (!product) return;
+
+            // تحديث السعر المعروض
+            const price = product.price[selectedSizeForPage];
+            document.getElementById('page-product-price').innerText = `${price.toLocaleString()} DZD`;
+
+            // تحديث تصميم أزرار الاختيار
+            const sizes = [100, 150, 10];
+            sizes.forEach(sz => {
+                const btn = document.getElementById(`page-size-${sz}`);
+                if (sz === selectedSizeForPage) {
+                    btn.className = "py-4 border border-brand-dark bg-brand-light text-brand-dark text-xs md:text-sm font-bold tracking-widest uppercase transition-all rounded shadow-sm";
+                } else {
+                    btn.className = "py-4 border border-brand-accent text-brand-gray hover:border-brand-dark hover:text-brand-dark text-xs md:text-sm font-bold tracking-widest uppercase transition-all rounded";
+                }
+            });
+        }
+
+        // فتح وإغلاق منسدلات الـ Accordion في الصفحة
+        function togglePageAccordion(key) {
+            activePageAccordions[key] = !activePageAccordions[key];
+            const textEl = document.getElementById(`page-${key}-text`);
+            const iconEl = document.getElementById(`page-icon-${key}`);
+
+            if (activePageAccordions[key]) {
+                textEl.classList.remove('hidden');
+                iconEl.innerText = '▲';
+            } else {
+                textEl.classList.add('hidden');
+                iconEl.innerText = '▼';
+            }
+        }
+
+        // إضافة المنتج من الصفحة إلى السلة
+        function addPageProductToCart() {
+            const product = selectedProductForPage;
+            if (!product) return;
+
+            // التحقق مما إذا كان مضافاً مسبقاً بنفس الحجم
+            const existingIndex = cart.findIndex(item => item.id === product.id && item.size === selectedSizeForPage);
+
+            if (existingIndex > -1) {
+                cart[existingIndex].quantity += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    image: product.image,
+                    size: selectedSizeForPage,
+                    price: product.price[selectedSizeForPage],
+                    quantity: 1
+                });
+            }
+
+            updateCartUI();
+            switchTab('cart'); // الانتقال مباشرة لتأكيد الطلب
+        }
+
+        // تعديل الكميات في السلة
+        function updateCartQuantity(index, delta) {
+            cart[index].quantity += delta;
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        // تحديث واجهة السلة والدفع وحساب المجاميع
+        function updateCartUI() {
+            const listContainer = document.getElementById('cart-items-list');
+            const cartContainer = document.getElementById('cart-checkout-container');
+            const emptyState = document.getElementById('cart-empty-state');
+            
+            // تحديث الشارة بالسلة العليا والسفلية
+            const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const badgeTop = document.getElementById('header-cart-badge');
+            const badgeBottom = document.getElementById('cart-badge-bottom');
+
+            if (totalQty > 0) {
+                badgeTop.innerText = totalQty;
+                badgeBottom.innerText = totalQty;
+                badgeTop.classList.remove('hidden');
+                badgeBottom.classList.remove('hidden');
+                cartContainer.classList.remove('hidden');
+                emptyState.classList.add('hidden');
+            } else {
+                badgeTop.classList.add('hidden');
+                badgeBottom.classList.add('hidden');
+                cartContainer.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+            }
+
+            listContainer.innerHTML = '';
+            let subtotal = 0;
+
+            cart.forEach((item, idx) => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+
+                const itemRow = document.createElement('div');
+                itemRow.className = "flex py-4 space-x-4 items-center";
+                itemRow.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="w-16 h-16 bg-brand-accent/20 p-1.5 rounded object-contain">
+                    <div class="flex-grow">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="font-serif text-sm font-semibold">${item.name}</h4>
+                                <span class="text-[10px] text-brand-gray tracking-wider uppercase">${item.size} ML</span>
+                            </div>
+                            <span class="text-xs font-bold text-brand-dark">${itemTotal.toLocaleString()} DZD</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-2">
+                            <div class="flex items-center border border-brand-accent rounded">
+                                <button onclick="updateCartQuantity(${idx}, -1)" class="px-2 py-0.5 text-xs hover:bg-brand-accent">-</button>
+                                <span class="px-3 py-0.5 text-xs font-semibold">${item.quantity}</span>
+                                <button onclick="updateCartQuantity(${idx}, 1)" class="px-2 py-0.5 text-xs hover:bg-brand-accent">+</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                listContainer.appendChild(itemRow);
+            });
+
+            document.getElementById('cart-subtotal').innerText = `${subtotal.toLocaleString()} DZD`;
+            calculateFinalTotal(subtotal);
+        }
+
+        // ملء الولايات الـ 58 برمجياً
+        function populateWilayasDropdown() {
+            const dropdown = document.getElementById('cust-wilaya');
+            dropdown.innerHTML = '<option value="" disabled selected>Sélectionner la Wilaya</option>';
+
+            algeriaWilayas.forEach(w => {
+                const opt = document.createElement('option');
+                opt.value = w.code;
+                opt.innerText = `${w.code} - ${w.name}`;
+                dropdown.appendChild(opt);
+            });
+        }
+
+        // معالجة تغيير الولاية لحساب تكلفة الشحن مباشرة
+        function onWilayaChange() {
+            const subtotalText = document.getElementById('cart-subtotal').innerText;
+            const subtotal = parseInt(subtotalText.replace(/\s/g, ''));
+            calculateFinalTotal(subtotal);
+        }
+
+        // حساب الشحن والتكلفة النهائية
+        function calculateFinalTotal(subtotal) {
+            const dropdown = document.getElementById('cust-wilaya');
+            const selectedCode = parseInt(dropdown.value);
+
+            let shippingCost = 0;
+            if (selectedCode) {
+                const wilaya = algeriaWilayas.find(w => w.code === selectedCode);
+                if (wilaya) {
+                    shippingCost = wilaya.shipping;
+                }
+            }
+
+            // ترويج الشحن المجاني إذا تخطت الفاتورة 15,000 د.ج
+            if (subtotal >= 15000) {
+                shippingCost = 0;
+            }
+
+            const grandTotal = subtotal + shippingCost;
+
+            document.getElementById('cart-shipping-cost').innerText = shippingCost === 0 ? "Gratuit" : `${shippingCost.toLocaleString()} DZD`;
+            document.getElementById('cart-grand-total').innerText = `${grandTotal.toLocaleString()} DZD`;
+        }
+
+        // تأكيد وإرسال طلب الدفع عند الاستلام COD
+        function handleCODSubmit(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('cust-name').value;
+            const phone = document.getElementById('cust-phone').value;
+            const wilayaCode = document.getElementById('cust-wilaya').value;
+            const commune = document.getElementById('cust-commune').value;
+            const address = document.getElementById('cust-address').value;
+
+            if (!name || !phone || !wilayaCode || !commune || !address) {
+                alert("Veuillez remplir tous les champs obligatoires.");
+                return;
+            }
+
+            // مرجع وهمي فريد للطلب
+            const orderId = `#EP-${Math.floor(1000 + Math.random() * 9000)}`;
+            document.getElementById('success-ref').innerText = orderId;
+
+            // تفريغ السلة وتطهير البيانات
+            cart = [];
+            updateCartUI();
+            document.getElementById('cod-order-form').reset();
+
+            // إخفاء السلة وعرض واجهة النجاح
+            document.getElementById('tab-cart').classList.add('hidden');
+            document.getElementById('view-success').classList.remove('hidden');
+        }
+    </script>
+
+    <!-- القائمة الجانبية (Quick View Sidebar) -->
+    <div id="quick-view-overlay" onclick="closeQuickSidebar()" class="fixed inset-0 bg-black/50 z-[60] hidden transition-opacity opacity-0"></div>
+    <div id="quick-view-sidebar" class="fixed top-0 right-0 bottom-0 w-80 sm:w-96 bg-brand-light shadow-2xl z-[70] transform translate-x-full transition-transform duration-300 flex flex-col">
+        <div class="p-4 border-b border-brand-accent flex justify-between items-center bg-white">
+            <h3 class="font-serif text-lg font-medium text-brand-dark tracking-wide uppercase">Aperçu Rapide</h3>
+            <button onclick="closeQuickSidebar()" class="text-brand-gray hover:text-brand-dark p-2 focus:outline-none">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+        </div>
+        <div class="flex-grow overflow-y-auto p-5 flex flex-col space-y-5">
+            <div class="bg-brand-accent/20 rounded-xl p-4 flex justify-center h-56 border border-brand-accent/50">
+                <img id="qv-image" src="" class="h-full object-contain filter drop-shadow hover:scale-105 transition-transform duration-500">
+            </div>
+            <div>
+                <h4 id="qv-name" class="font-serif text-2xl font-semibold text-brand-dark"></h4>
+                <p id="qv-creator" class="text-[10px] uppercase tracking-widest text-brand-gray mt-1 italic"></p>
+                <div id="qv-price" class="text-xl font-bold text-brand-dark mt-3"></div>
+            </div>
+            
+            <div class="pt-4 border-t border-brand-accent space-y-3">
+                <label class="block text-[10px] sm:text-xs tracking-widest uppercase text-brand-gray font-semibold">Sélectionnez la Taille</label>
+                <div class="grid grid-cols-3 gap-2">
+                    <button onclick="setQvSize(100)" id="qv-size-100" class="py-2.5 border border-brand-dark bg-brand-dark text-white text-[10px] sm:text-xs font-bold tracking-widest uppercase transition-all rounded shadow-sm">100 ml</button>
+                    <button onclick="setQvSize(150)" id="qv-size-150" class="py-2.5 border border-brand-accent text-brand-gray hover:border-brand-dark text-[10px] sm:text-xs font-bold tracking-widest uppercase transition-all rounded">150 ml</button>
+                    <button onclick="setQvSize(10)" id="qv-size-10" class="py-2.5 border border-brand-accent text-brand-gray hover:border-brand-dark text-[10px] sm:text-xs font-bold tracking-widest uppercase transition-all rounded">10 ml</button>
+                </div>
+            </div>
+        </div>
+        <div class="p-5 border-t border-brand-accent bg-white">
+            <button onclick="addQvToCart()" class="w-full bg-brand-dark text-white py-4 text-xs tracking-[0.1em] sm:tracking-[0.2em] uppercase hover:bg-brand-gold transition-colors duration-300 font-bold flex items-center justify-center space-x-2 rounded shadow-lg">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                <span>Ajouter au panier</span>
+            </button>
+        </div>
+    </div>
+</body>
+</html>
